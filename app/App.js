@@ -1,8 +1,5 @@
 import React, { Component } from 'react';
-import {
-  StyleSheet,
-  View
-} from 'react-native';
+import {View } from 'react-native';
 
 import RootComponent from './RootComponent';
 
@@ -17,16 +14,8 @@ export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <View style={styles.container}>
-          <RootComponent />
-        </View>
+        <RootComponent />
       </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1
-  }
-});
