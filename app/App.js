@@ -8,13 +8,14 @@ import { Provider } from 'react-redux';
 
 import reducers from './reducers';
 
-const store = createStore(reducers)
+const store = createStore(reducers);
+import AppWithNavigationState from './navigators/AppNavigator';
 
 export default class App extends Component {
   render() {
     return (
       <Provider store={store}>
-        <RootComponent />
+        <AppWithNavigationState />
       </Provider>
     );
   }
