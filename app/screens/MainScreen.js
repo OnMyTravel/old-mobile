@@ -7,16 +7,21 @@ import AuthButton from '../components/AuthButton';
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
+    backgroundColor: '#F3F4F4',
+    padding: 30
   },
+  card: {
+    backgroundColor: '#FFFFFF',
+    height: '100%'
+  }
 });
 
 const MainScreen = () => (
   <View style={styles.container}>
-    <LoginStatusMessage />
-    <AuthButton />
+    <View style={styles.card}>
+      <LoginStatusMessage />
+      <AuthButton />
+    </View>
   </View>
 );
 

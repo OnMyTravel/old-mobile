@@ -7,14 +7,17 @@ import LoginScreen from '../screens/LoginScreen';
 import MainScreen from '../screens/MainScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
-export const AppNavigator = StackNavigator({
-  Login: { screen: LoginScreen },
-  Main: { screen: MainScreen },
-  Profile: { screen: ProfileScreen },
-}, {
-  initialRouteName: 'Main',
-  headerMode: 'none'
-});
+export const AppNavigator = StackNavigator(
+  {
+    Login: { screen: LoginScreen },
+    Main: { screen: MainScreen },
+    Profile: { screen: ProfileScreen },
+  },
+  {
+    initialRouteName: 'Main',
+    headerMode: 'none'
+  }
+);
 
 const AppWithNavigationState = ({ dispatch, nav }) => (
   <AppNavigator navigation={addNavigationHelpers({ dispatch, state: nav })} />
