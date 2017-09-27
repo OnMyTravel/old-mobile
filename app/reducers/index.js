@@ -6,7 +6,6 @@ import { AppNavigator } from '../navigators/AppNavigator';
 // Start with two routes: The Main screen, with the Login screen on top.
 const firstAction = AppNavigator.router.getActionForPathAndParams('Main');
 const tempNavState = AppNavigator.router.getStateForAction(firstAction);
-const secondAction = AppNavigator.router.getActionForPathAndParams('Login');
 const initialNavState = AppNavigator.router.getStateForAction(
   firstAction,
   tempNavState
@@ -14,23 +13,33 @@ const initialNavState = AppNavigator.router.getStateForAction(
 
 function nav(state = initialNavState, action) {
   let nextState;
-  switch (action.type) {
-    case 'Login':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.back(),
-        state
-      );
-      break;
-    case 'Logout':
-      nextState = AppNavigator.router.getStateForAction(
-        NavigationActions.navigate({ routeName: 'Login' }),
-        state
-      );
-      break;
-    default:
-      nextState = AppNavigator.router.getStateForAction(action, state);
-      break;
+
+  console.log(`Reducer > nav`)
+  if(action.type === 'NAVIGATION') {
+    console.log(`Reducer > nav > Navigation to "${action.route}" screen`)
+    nextState = AppNavigator.router.getStateForAction(
+      NavigationActions.navigate({ routeName: action.route }),
+      state
+    );
   }
+
+  // switch (action.type) {
+  //   case 'Login':
+  //     nextState = AppNavigator.router.getStateForAction(
+  //       NavigationActions.navigate({ routeName: 'Login' }),
+  //       state
+  //     );
+  //     break;
+  //   case 'Logout':
+  //     nextState = AppNavigator.router.getStateForAction(
+  //       NavigationActions.navigate({ routeName: 'Login' }),
+  //       state
+  //     );
+  //     break;
+  //   default:
+  //     nextState = AppNavigator.router.getStateForAction(action, state);
+  //     break;
+  // }
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;
@@ -39,6 +48,7 @@ function nav(state = initialNavState, action) {
 const initialAuthState = { isLoggedIn: false };
 
 function auth(state = initialAuthState, action) {
+  console.log(`Reducer > auth`)
   switch (action.type) {
     case 'Login':
       return { ...state, isLoggedIn: true };

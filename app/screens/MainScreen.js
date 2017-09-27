@@ -1,32 +1,42 @@
 import React from 'react';
-import { StyleSheet, View } from 'react-native';
-
-import LoginStatusMessage from '../components/LoginStatusMessage';
-import AuthButton from '../components/AuthButton';
+import PropTypes from 'prop-types';
+import { Button, StyleSheet, Text, View } from 'react-native';
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#F3F4F4',
-    padding: 30
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F5FCFF',
   },
-  card: {
-    backgroundColor: '#FFFFFF',
-    height: '100%'
-  }
+  welcome: {
+    fontSize: 20,
+    textAlign: 'center',
+    margin: 10,
+  },
 });
 
-const MainScreen = () => (
+const MainScreen = ({ navigation }) => (
   <View style={styles.container}>
-    <View style={styles.card}>
-      <LoginStatusMessage />
-      <AuthButton />
-    </View>
+    <Text style={styles.welcome}>
+      Login Screen
+    </Text>
+    <Text style={styles.instructions}>
+      This is great
+    </Text>
+    <Button
+      onPress={() => navigation.dispatch({ type: 'NAVIGATION', route: 'Register' })}
+      title="Log in"
+    />
   </View>
 );
 
+MainScreen.propTypes = {
+  navigation: PropTypes.object.isRequired,
+};
+
 MainScreen.navigationOptions = {
-  title: 'Home Screen',
+  title: 'Log In',
 };
 
 export default MainScreen;

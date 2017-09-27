@@ -23,8 +23,10 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   logout: () => dispatch({ type: 'Logout' }),
-  loginScreen: () =>
-    dispatch(NavigationActions.navigate({ routeName: 'Login' })),
+  loginScreen: () => {
+    console.log('LOGIN SCREEN');
+    //return dispatch(NavigationActions.navigate({ routeName: 'Login' }));
+  },
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(AuthButton);

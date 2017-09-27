@@ -3,19 +3,19 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { addNavigationHelpers, StackNavigator } from 'react-navigation';
 
-import LoginScreen from '../screens/LoginScreen';
+import RegisterScreen from '../screens/RegisterScreen';
 import MainScreen from '../screens/MainScreen';
 import ProfileScreen from '../screens/ProfileScreen';
 
 export const AppNavigator = StackNavigator(
   {
-    Login: { screen: LoginScreen },
     Main: { screen: MainScreen },
+    Register: { screen: RegisterScreen },
     Profile: { screen: ProfileScreen },
   },
   {
-    initialRouteName: 'Main',
-    headerMode: 'none'
+    headerMode: 'none',
+    mode: 'modal'
   }
 );
 
