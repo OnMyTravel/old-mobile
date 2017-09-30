@@ -1,82 +1,19 @@
 import React, { Component } from 'react';
-import {
-  AppRegistry,
-  StyleSheet,
-  Text,
-  View,
-  Button
-} from 'react-native';
+import { Provider } from 'react-redux';
+import { createStore, combineReducers } from 'redux';
 
-import { connect } from 'react-redux';
-import { bindActionCreators } from 'redux';
-import * as Actions from './actions'
+import AppWithNavigationState from './navigators/AppNavigator';
 
-class App extends Component {
+import reducers from './reducers';
 
-  // constructor(props) {
-  //   super(props);
-  //   console.log(props)
-  //   this.actions = props.actions;
-  // }
+const store = createStore(reducers);
 
-  onLogin() {
-    console.log(this.props.actions.login('alwin'))
-    //console.log(this.props.login('SALUT'))
-  }
-
+export default class App extends Component {
   render() {
-    console.log('------------------------')
-    console.log(this.props.state.user.isLoggedIn)
-    console.log('------------------------')
     return (
-      <View style={styles.container}>
-        <Text style={styles.welcome}>
-          Welcome to React Native!
-        </Text>
-        <Text style={styles.instructions}>
-          To get started, you can simply edit index.ios.js
-        </Text>
-        <Text style={styles.instructions}>
-          Press Cmd+R to reload,{'\n'}
-          Cmd+D or shake for dev menu
-        </Text>
-        <Button
-          onPress={this.onLogin.bind(this)}
-          title="Login"
-          color="#841584"
-          accessibilityLabel="Learn more about this purple button"
-        />
-        <Text>
-           {this.props.state.user.isLoggedIn}
-        </Text>
-      </View>
+      <Provider store={store}>
+        <AppWithNavigationState />
+      </Provider>
     );
   }
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
-
-const mapStateToProps = state => ({state})
-const mapDispatchToProps = dispatch => ({ actions: bindActionCreators(Actions, dispatch)})
-
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(App);
