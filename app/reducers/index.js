@@ -17,29 +17,19 @@ function nav(state = initialNavState, action) {
   console.log(`Reducer > nav`)
   if(action.type === 'NAVIGATION') {
     console.log(`Reducer > nav > Navigation to "${action.route}" screen`)
-    nextState = AppNavigator.router.getStateForAction(
-      NavigationActions.navigate({ routeName: action.route }),
-      state
-    );
-  }
 
-  // switch (action.type) {
-  //   case 'Login':
-  //     nextState = AppNavigator.router.getStateForAction(
-  //       NavigationActions.navigate({ routeName: 'Login' }),
-  //       state
-  //     );
-  //     break;
-  //   case 'Logout':
-  //     nextState = AppNavigator.router.getStateForAction(
-  //       NavigationActions.navigate({ routeName: 'Login' }),
-  //       state
-  //     );
-  //     break;
-  //   default:
-  //     nextState = AppNavigator.router.getStateForAction(action, state);
-  //     break;
-  // }
+    if(action.route == 'Back') {
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.back(),
+        state
+      );
+    } else {
+      nextState = AppNavigator.router.getStateForAction(
+        NavigationActions.navigate({ routeName: action.route }),
+        state
+      );
+    }
+  }
 
   // Simply return the original `state` if `nextState` is null or undefined.
   return nextState || state;

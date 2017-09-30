@@ -75,7 +75,7 @@ const RegisterScreen = () => (
 
     <View style={styles.alreadyRegistered}>
       <Text style={styles.alreadyRegisteredText}>J'ai déjà un compte. </Text>
-      <LinkButton text="Me connecter" target="Main" />
+      <LinkButton text="Me connecter" target="Back" />
     </View>
   </View>
 );
